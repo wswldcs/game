@@ -433,7 +433,7 @@ function closeGame() {
 }
 
 function showAbout() {
-    alert('Kilo游戏合集 v2.1\n\n这是一个包含多款经典小游戏的网页合集。\n\n✨ 新功能:\n• 新增创意游戏：代码行者\n• 全面修复数独和2048的顽固bug\n• 优化了数独的游戏界面\n\n开发者：Kilo\nGitHub: https://github.com/wswldcs/kiloc4games');
+    alert('经典游戏合集 v1.0\n\n这是一个包含多款经典小游戏的网页合集。\n\n新功能：\n·新增创意游戏：代码行者\n·全面修复数独和2048的顽固bug\n·优化了数独的游戏界面\n\n开发者：wswldcs\n项目部署地址: https://wswldcs.github.io/game/');
 }
 
 // 统计菜单功能
