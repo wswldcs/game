@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经典游戏合集 - 经典小游戏集合</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/games.css">
+    <link rel="stylesheet" href="styles/games/sudoku.css?v=202507281752">
+    <link rel="stylesheet" href="styles/games/codewalker.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🎮 经典游戏合集</h1>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="搜索游戏..." class="search-input">
+                    <button class="search-btn" onclick="searchGames()">🔍</button>
+                </div>
+                <div class="stats">
+                    <span class="stat">总访问: <span id="totalVisits">0</span></span>
+                    <span class="stat">游戏次数: <span id="totalGames">0</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- 网站介绍部分 -->
+            <section class="intro-section">
+                <h2>欢迎来到经典游戏世界</h2>
+                <p>收录了多款经典小游戏，重温童年回忆，挑战你的技巧！每个游戏都支持简单、困难、挑战三种难度模式。</p>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <span>多种难度</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>数据统计</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📱</span>
+                        <span>响应式设计</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🏆</span>
+                        <span>排行榜</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 游戏标签过滤 -->
+            <section class="filter-section">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterGames('all')">全部</button>
+                    <button class="filter-tab" onclick="filterGames('puzzle')">益智类</button>
+                    <button class="filter-tab" onclick="filterGames('action')">动作类</button>
+                    <button class="filter-tab" onclick="filterGames('strategy')">策略类</button>
+                    <button class="filter-tab" onclick="filterGames('classic')">经典类</button>
+                </div>
+            </section>
+
+            <!-- 游戏网格 -->
+            <section class="games-grid" id="gamesGrid">
+                <div class="game-card" data-game="snake" data-tags="classic,action">
+                    <div class="game-icon">🐍</div>
+                    <h3>贪吃蛇</h3>
+                    <p>经典的贪吃蛇游戏，控制小蛇吃食物长大</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="snake-difficulty">难度:</label>
+                        <select id="snake-difficulty" class="difficulty-select" data-game="snake" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>困难</option>
+                            <option value="hard">挑战</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('snake')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="2048" data-tags="puzzle,strategy">
+                    <div class="game-icon">🔢</div>
+                    <h3>2048</h3>
+                    <p>滑动数字方块，合成2048获得胜利</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="2048-difficulty">难度:</label>
+                        <select id="2048-difficulty" class="difficulty-select" data-game="2048" title="选择游戏难度">
+                            <option value="easy">简单(3x3)</option>
+                            <option value="normal" selected>困难(4x4)</option>
+                            <option value="hard">挑战(5x5)</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('2048')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="breakout" data-tags="classic,action">
+                    <div class="game-icon">🧱</div>
+                    <h3>打砖块</h3>
+                    <p>控制挡板反弹球，消除所有砖块</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="breakout-difficulty">难度:</label>
+                        <select id="breakout-difficulty" class="difficulty-select" data-game="breakout" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>困难</option>
+                            <option value="hard">挑战</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('breakout')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="tetris" data-tags="classic,puzzle">
+                    <div class="game-icon">🟦</div>
+                    <h3>俄罗斯方块</h3>
+                    <p>经典俄罗斯方块，消除完整行获得分数</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="tetris-difficulty">难度:</label>
+                        <select id="tetris-difficulty" class="difficulty-select" data-game="tetris" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>困难</option>
+                            <option value="hard">挑战</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('tetris')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="minesweeper" data-tags="puzzle,strategy">
+                    <div class="game-icon">💣</div>
+                    <h3>扫雷</h3>
+                    <p>找出所有地雷，小心不要踩到！</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="minesweeper-difficulty">难度:</label>
+                        <select id="minesweeper-difficulty" class="difficulty-select" data-game="minesweeper" title="选择游戏难度">
+                            <option value="easy">简单(9x9)</option>
+                            <option value="normal" selected>困难(16x16)</option>
+                            <option value="hard">挑战(16x30)</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('minesweeper')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="sudoku" data-tags="puzzle,strategy">
+                    <div class="game-icon">🔢</div>
+                    <h3>数独</h3>
+                    <p>填写数字，让每行、每列和每个九宫格都包含1-9</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="sudoku-difficulty">难度:</label>
+                        <select id="sudoku-difficulty" class="difficulty-select" data-game="sudoku" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('sudoku')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="maze" data-tags="puzzle,strategy">
+                    <div class="game-icon">🗺️</div>
+                    <h3>走迷宫</h3>
+                    <p>使用方向键控制角色，走出随机生成的迷宫</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="maze-difficulty">难度:</label>
+                        <select id="maze-difficulty" class="difficulty-select" data-game="maze" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('maze')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="shooter" data-tags="action,classic">
+                    <div class="game-icon">✈️</div>
+                    <h3>打飞机大战</h3>
+                    <p>驾驶战机，在枪林弹雨中消灭敌人</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="shooter-difficulty">难度:</label>
+                        <select id="shooter-difficulty" class="difficulty-select" data-game="shooter" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>困难</option>
+                            <option value="hard">挑战</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('shooter')">开始游戏</button>
+                </div>
+
+                <div class="game-card" data-game="puzzle" data-tags="puzzle,strategy">
+                    <div class="game-icon">🧩</div>
+                    <h3>数字拼图 (待开发)</h3>
+                    <p>滑动方块，将数字按顺序排列</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="puzzle-difficulty">难度:</label>
+                        <select id="puzzle-difficulty" class="difficulty-select" data-game="puzzle" title="选择游戏难度">
+                            <option value="easy">简单(3x3)</option>
+                            <option value="normal" selected>中等(4x4)</option>
+                            <option value="hard">困难(5x5)</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('puzzle')" disabled>待开发</button>
+                </div>
+
+                <div class="game-card" data-game="match" data-tags="puzzle,classic">
+                    <div class="game-icon">🀄</div>
+                    <h3>连连看 (待开发)</h3>
+                    <p>找到并消除所有相同的配对图块</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="match-difficulty">难度:</label>
+                        <select id="match-difficulty" class="difficulty-select" data-game="match" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('match')" disabled>待开发</button>
+                </div>
+
+                <div class="game-card" data-game="pacman" data-tags="action,classic">
+                    <div class="game-icon">🟡</div>
+                    <h3>吃豆人 (待开发)</h3>
+                    <p>在迷宫中吃掉所有豆子，同时躲避幽灵</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="pacman-difficulty">难度:</label>
+                        <select id="pacman-difficulty" class="difficulty-select" data-game="pacman" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('pacman')" disabled>待开发</button>
+                </div>
+
+                <div class="game-card" data-game="frogger" data-tags="action,classic">
+                    <div class="game-icon">🐸</div>
+                    <h3>青蛙过河 (待开发)</h3>
+                    <p>帮助青蛙穿过危险的马路和河流</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="frogger-difficulty">难度:</label>
+                        <select id="frogger-difficulty" class="difficulty-select" data-game="frogger" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('frogger')" disabled>待开发</button>
+                </div>
+
+                <div class="game-card" data-game="lasso" data-tags="action,classic">
+                    <div class="game-icon">🤠</div>
+                    <h3>套马 (待开发)</h3>
+                    <p>在草原上驰骋，套住奔跑的野马</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="lasso-difficulty">难度:</label>
+                        <select id="lasso-difficulty" class="difficulty-select" data-game="lasso" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('lasso')" disabled>待开发</button>
+                </div>
+
+                <div class="game-card" data-game="racing" data-tags="strategy,classic">
+                    <div class="game-icon">🏇</div>
+                    <h3>赛马 (待开发)</h3>
+                    <p>选择你心仪的赛马，赢得比赛！</p>
+                    <div class="game-stats">
+                        <span>游戏次数: <span class="play-count">0</span></span>
+                    </div>
+                    <div class="difficulty-container">
+                        <label for="racing-difficulty">难度:</label>
+                        <select id="racing-difficulty" class="difficulty-select" data-game="racing" title="选择游戏难度">
+                            <option value="easy">简单</option>
+                            <option value="normal" selected>中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    <button class="play-btn" onclick="playGameWithDifficulty('racing')" disabled>待开发</button>
+                </div>
+
+            </section>
+
+            <div class="game-card" data-game="codewalker" data-tags="puzzle,strategy">
+                <div class="game-icon">👨‍💻</div>
+                <h3>代码行者 (待开发)</h3>
+                <p>在代码构成的迷宫中穿行，找到并修复所有bug！</p>
+                <div class="game-stats">
+                    <span>游戏次数: <span class="play-count">0</span></span>
+                </div>
+                <div class="difficulty-container">
+                    <label for="codewalker-difficulty">难度:</label>
+                    <select id="codewalker-difficulty" class="difficulty-select" data-game="codewalker" title="选择游戏难度">
+                        <option value="easy">简单(HTML)</option>
+                        <option value="normal" selected>中等(CSS)</option>
+                        <option value="hard">困难(JS)</option>
+                    </select>
+                </div>
+                <button class="play-btn" onclick="playGameWithDifficulty('codewalker')" disabled>待开发</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 游戏模态框 -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="gameTitle">游戏</h3>
+                <div id="gameControls" class="game-controls">
+                    <!-- Generic game controls will be injected here -->
+                </div>
+                <!-- Sudoku specific controls - moved outside of gameControls -->
+                <div id="sudokuControls" class="sudoku-controls" style="display: none;">
+                    <div class="sudoku-info">
+                        <span>时间: <span id="sudokuTime">00:00</span></span>
+                        <span>已填充: <span id="sudokuFilled">0 / 45</span></span>
+                        <span>重填: <span id="sudokuRefills">0 / 5</span></span>
+                    </div>
+                    <div id="sudokuPalette" class="sudoku-palette">
+                        <div class="palette-number" data-number="1">1</div>
+                        <div class="palette-number" data-number="2">2</div>
+                        <div class="palette-number" data-number="3">3</div>
+                        <div class="palette-number" data-number="4">4</div>
+                        <div class="palette-number" data-number="5">5</div>
+                        <div class="palette-number" data-number="6">6</div>
+                        <div class="palette-number" data-number="7">7</div>
+                        <div class="palette-number" data-number="8">8</div>
+                        <div class="palette-number" data-number="9">9</div>
+                    </div>
+                </div>
+                <span class="difficulty-indicator" id="difficultyIndicator">普通</span>
+                <span class="close" onclick="closeGame()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="gameContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 经典游戏合集. 所有游戏仅供娱乐使用.</p>
+            <div class="links">
+                <a href="#" onclick="showAbout()">关于</a>
+                <a href="https://github.com/wswldcs/kiloc4games" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js?v=202507281740"></script>
+    <script src="js/stats.js?v=202507281740"></script>
+    <script src="js/games/snake.js?v=202507281740"></script>
+    <script src="js/games/2048.js?v=202507281740"></script>
+    <script src="js/games/breakout.js?v=202507281740"></script>
+    <script src="js/games/tetris.js?v=202507281740"></script>
+    <script src="js/games/minesweeper.js?v=202507281740"></script>
+    <script src="js/games/maze.js?v=202507281740"></script>
+    <script src="js/games/shooter.js?v=202507281740"></script>
+    <script src="js/games/puzzle.js?v=202507281740"></script>
+    <script src="js/games/match.js?v=202507281740"></script>
+    <script src="js/games/pacman.js?v=202507281740"></script>
+    <script src="js/games/frogger.js?v=202507281740"></script>
+    <script src="js/games/lasso.js?v=202507281740"></script>
+    <script src="js/games/racing.js?v=202507281740"></script>
+    <script src="js/games/sudoku.js?v=202507281740"></script>
+    <script src="js/games/codewalker.js?v=202507281759"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* CodeWalker Game Styles */
+.codewalker-board {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow: auto;
+    white-space: pre;
+    line-height: 1.5;
+}
+
+.player {
+    background-color: #61afef;
+    color: #282c34;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+.bug {
+    background-color: #e06c75;
+    color: #282c34;
+    text-decoration: line-through;
+    cursor: help;
+}
+
+.exit {
+    background-color: #98c379;
+    color: #282c34;
+}

@@ -1,0 +1,114 @@
+.sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    width: clamp(300px, 90vw, 540px);
+    height: clamp(300px, 90vw, 540px);
+    margin: 1rem auto;
+    border: 3px solid #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.sudoku-cell {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(16px, 4vw, 28px);
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-in-out;
+    color: #4a4a4a;
+}
+
+.sudoku-cell:hover {
+    background-color: #f5f5f5;
+}
+
+.sudoku-cell.given {
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: 900;
+    cursor: not-allowed;
+}
+
+.sudoku-cell.selected {
+    background-color: #bbdefb;
+    position: relative;
+}
+
+.sudoku-cell.selected::after {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border: 2px solid #2196f3;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.sudoku-cell.mistake {
+    background-color: #ffebee;
+    color: #c62828;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.sudoku-cell.border-bottom {
+    border-bottom: 2px solid #999;
+}
+
+.sudoku-cell.border-right {
+    border-right: 2px solid #999;
+}
+
+.sudoku-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.sudoku-info {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: #555;
+    background-color: #f7f7f7;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.sudoku-palette {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.palette-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.palette-number:hover {
+    background-color: #e3f2fd;
+    transform: translateY(-2px);
+}
