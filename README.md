@@ -36,7 +36,7 @@
 
 1. 克隆本仓库到本地：
    ```bash
-   git clone https://github.com/wswldcs/kiloc4games.git
+   git clone https://github.com/wswldcs/game.git
    ```
 2. 在项目根目录中启动一个本地HTTP服务器。例如，使用Python：
    ```bash
@@ -55,7 +55,7 @@
 ## 📁 项目结构
 
 ```
-kiloc4games/
+game/
 ├── index.html              # 主页面
 ├── README.md               # 项目说明
 ├── DEPLOY.md               # 部署指南
@@ -74,7 +74,7 @@ kiloc4games/
 
 ## 🌐 在线体验
 
-访问 [经典游戏合集](https://wswldcs.github.io/kiloc4games/) 立即开始游戏！
+访问 [经典游戏合集](https://wswldcs.github.io/game/) 立即开始游戏！
 
 ## 📝 更新日志
 
